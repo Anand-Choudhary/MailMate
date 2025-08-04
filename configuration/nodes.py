@@ -36,7 +36,7 @@ def summarize_email(state: EmailAssistantState) -> EmailAssistantState:
 
 def ask_to_reply(state: EmailAssistantState) -> EmailAssistantState:
     summary = state["summaries"][-1]
-    print(f"\n📨 Summary:\n{summary}")
+    # print(f"\n📨 Summary:\n{summary}")
 
     # Cover the voice part coding later.
     
@@ -48,7 +48,7 @@ def ask_to_reply(state: EmailAssistantState) -> EmailAssistantState:
     
     return {
         **state,
-        "user_wants_reply": user_input.startswith("y")  # Covers yes, yeah, y
+        "user_wants_reply": user_input.startswith("y")  # Sab sambhalta hai yes, yeah, y
     }
 
 def send_email(state: EmailAssistantState) -> EmailAssistantState:

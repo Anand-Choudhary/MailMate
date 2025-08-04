@@ -1,7 +1,8 @@
 __pycache__
 .vscode
 ./mail/__pycache__
-/credentials.json
-/token.json
+/mail/credentials.json
+/mail/token.json
 /myvenv
 .env
+/todo.txt

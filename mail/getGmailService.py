@@ -7,9 +7,12 @@ from google_auth_oauthlib.flow import InstalledAppFlow
 from googleapiclient.discovery import build
 
 # If modifying scopes, delete the token.json file
-SCOPES = ['https://www.googleapis.com/auth/gmail.readonly']
+SCOPES = ['https://www.googleapis.com/auth/gmail.readonly',
+          'https://www.googleapis.com/auth/gmail.send',
+          'https://www.googleapis.com/auth/calendar' 
+          ]
 
-def get_gmail_service():
+def get_google_service(api_name, api_version):
     creds = None
     if os.path.exists('token.json'):
         creds = Credentials.from_authorized_user_file('token.json', SCOPES)
@@ -25,5 +28,8 @@ def get_gmail_service():
         with open('token.json', 'w') as token:
             token.write(creds.to_json())
 
-    service = build('gmail', 'v1', credentials=creds)
+    service = build(api_name, api_version, credentials=creds)
     return service
+
+
+# get_google_service('gmail', 'v1')
