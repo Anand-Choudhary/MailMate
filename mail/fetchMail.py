@@ -1,4 +1,4 @@
-from .getGmailService import get_google_service
+from getGmailService import get_google_service
 import base64
 import json
 
@@ -20,6 +20,13 @@ def fetch_emails(max_results=10):
         sender = headers.get('From', '(No Sender)')
         body = get_body(payload)
         emails.append({'id': msg['id'], 'subject': subject, 'sender': sender, 'body': body})
+
+        service.users().messages().modify(
+            userId='me',
+            id=msg['id'],
+            body={'removeLabelIds': ['UNREAD']}
+        ).execute()
+
     return emails
 
 def get_body(payload):
